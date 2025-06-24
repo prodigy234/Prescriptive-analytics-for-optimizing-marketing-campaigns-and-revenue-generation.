@@ -27,6 +27,8 @@ data.dropna(subset=['rating', 'rating_count'], inplace=True)
 # --- STREAMLIT UI SETUP --- #
 st.set_page_config(page_title="Amazon Product Insights", layout="wide", page_icon="📦")
 st.title("📦 Advanced Prescriptive Analytics Dashboard")
+st.markdown("This is an interactive and intelligent analytics dashboard delivering real-time prescriptive insights on Amazon product data.")
+st.info("This tool empowers product managers, marketers, and analysts to make data-driven decisions based on discount strategies, pricing effectiveness, customer sentiment, and category performance.")
 st.markdown("Explore **product performance, pricing strategy, sentiment**, and **category ROI recommendations** using Amazon product sales data.")
 
 # Sidebar Filters
@@ -47,10 +49,14 @@ col1.metric("📈 Avg. Rating", round(filtered_data['rating'].mean(), 2))
 col2.metric("💬 Total Reviews", int(filtered_data['rating_count'].sum()))
 col3.metric("🏷️ Avg. Discount %", round(filtered_data['discount_percentage'].mean(), 2))
 
+st.markdown("---")
+
 # --- DISCOUNT DISTRIBUTION --- #
 st.subheader("🎯 Discount Strategy")
 fig1 = px.histogram(filtered_data, x='discount_percentage', nbins=20, title="Distribution of Discount Percentages")
 st.plotly_chart(fig1, use_container_width=True)
+
+st.markdown("---")
 
 # --- SCATTER PLOTS --- #
 st.subheader("📊 Impact of Pricing & Discounts on Ratings")
@@ -62,6 +68,8 @@ with col5:
     fig3 = px.scatter(filtered_data, x='discounted_price', y='rating', size='rating_count', color='rating_count', title="Price vs. Rating")
     st.plotly_chart(fig3, use_container_width=True)
 
+st.markdown("---")
+
 # --- CATEGORY ANALYSIS --- #
 category_summary = filtered_data.groupby('category').agg({'rating': 'mean', 'discount_percentage': 'mean', 'rating_count': 'sum'}).reset_index()
 
@@ -69,14 +77,21 @@ st.subheader("🏆 Category Performance")
 fig4 = px.bar(category_summary.sort_values(by='rating', ascending=False), x='rating', y='category', color='rating', orientation='h', title="Average Ratings by Category")
 st.plotly_chart(fig4, use_container_width=True)
 
+st.markdown("---")
+
 fig5 = px.bar(category_summary.sort_values(by='rating_count', ascending=False), x='rating_count', y='category', color='discount_percentage', orientation='h', title="Rating Counts vs. Discount % by Category")
 st.plotly_chart(fig5, use_container_width=True)
+
+st.markdown("---")
 
 # --- PRESCRIPTIVE INSIGHTS --- #
 st.subheader("🧠 AI-Powered Prescriptive Recommendations")
 high_rating_categories = category_summary[category_summary['rating'] >= 4.0].sort_values('rating_count', ascending=False)
 st.markdown("### ✅ Best Performing Categories")
 st.dataframe(high_rating_categories)
+
+st.markdown("---")
+
 st.markdown("#### Recommendations")
 st.markdown("""
 - **Target discounts between 30%-60%** to boost perceived value.
@@ -84,6 +99,19 @@ st.markdown("""
 - **Bundle products** in top-rated categories to increase upsell chances.
 - **Monitor complaints in reviews** to improve product quality and reduce negative reviews.
 """)
+
+st.markdown("### \U0001F4DD Download The Full Analytical Report Here!!!")
+with open("Prescriptive_Insights_Summary.docx", "rb") as doc_file:
+    st.download_button(
+    label="\U0001F4E5 Download Full Word Report",
+    data=doc_file,
+    file_name="Prescriptive_Insights_Summary_Report.docx",
+    mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    )
+
+    st.info("This report gives a well detailed and summarized insights generated from this prescriptive analytics carried out.")
+    
+st.markdown("---")
 
 # --- CLUSTERING FOR SEGMENTATION --- #
 st.subheader("🔬 Product Segmentation using K-Means Clustering")
@@ -95,6 +123,8 @@ filtered_data['Cluster'] = kmeans.fit_predict(scaled_data)
 fig7 = px.scatter(filtered_data, x='discounted_price', y='rating', color='Cluster', size='rating_count', title='Product Segments by Price and Rating')
 st.plotly_chart(fig7, use_container_width=True)
 
+st.markdown("---")
+
 # --- WORD CLOUD --- #
 st.subheader("🔍 Customer Review Word Cloud")
 review_text = " ".join(filtered_data['review_content'].dropna())
@@ -103,6 +133,8 @@ fig6, ax = plt.subplots(figsize=(10, 5))
 ax.imshow(wordcloud, interpolation='bilinear')
 ax.axis('off')
 st.pyplot(fig6)
+
+st.markdown("---")
 
 # --- SENTIMENT INSIGHT --- #
 st.subheader("📣 Sentiment Signals")
@@ -120,4 +152,22 @@ with col7:
     st.markdown("### 👎 Top Negative Words")
     st.table(top_negative)
 
-# --- END OF DASHBOARD --- #
+st.markdown("---")
+st.markdown("# 👨‍💻 About the Developer")
+# Display developer image
+st.image("My image6.jpg", width=250)
+st.markdown("## **Kajola Gbenga**")
+
+st.markdown(
+    """
+📇 Certified Data Analyst | Certified Data Scientist | Certified SQL Programmer | Mobile App Developer | AI/ML Engineer
+
+🔗 [LinkedIn](https://www.linkedin.com/in/kajolagbenga)  
+📜 [View My Certifications & Licences](https://www.datacamp.com/portfolio/kgbenga234)  
+💻 [GitHub](https://github.com/prodigy234)  
+🌐 [Portfolio](https://kajolagbenga.netlify.app/)  
+📧 k.gbenga234@gmail.com
+"""
+)
+
+st.markdown("✅ Created using Python and Streamlit")

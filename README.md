@@ -2,6 +2,26 @@
 
 This interactive Streamlit dashboard provides comprehensive **descriptive, diagnostic, and prescriptive analytics** for Amazon product data, allowing users to filter by product category, price, and rating, while exploring visual insights and actionable recommendations.
 
+---
+
+## 📬 Author
+
+**Gbenga Kajola**
+🎓 Certified Data Analyst | 👨‍💻 Certified Data Scientist | 🧠 AI/ML Engineer | 📱 Mobile App Developer 
+
+[LinkedIn](https://www.linkedin.com/in/kajolagbenga)
+
+[Portfolio](https://kajolagbenga.netlify.app)
+
+[Certified_Data_Scientist](https://www.datacamp.com/certificate/DSA0012312825030)
+
+[Certified_Data_Analyst](https://www.datacamp.com/certificate/DAA0018583322187)
+
+[Certified_SQL_Database_Programmer](https://www.datacamp.com/certificate/SQA0019722049554)
+
+
+---
+
 ## 🔧 Features
 
 - **Interactive Filtering:** Category, price range, and rating range selection.
@@ -16,6 +36,9 @@ This interactive Streamlit dashboard provides comprehensive **descriptive, diagn
   - Word cloud of customer reviews
   - Top positive and negative keywords from review content
 
+---
+
+
 ## 🧾 Dataset
 
 The dashboard uses an `amazon.csv` file with the following key columns:
@@ -24,6 +47,9 @@ The dashboard uses an `amazon.csv` file with the following key columns:
 - `rating`, `rating_count`, `review_content`
 
 Ensure this file is placed in the same directory as the app script.
+
+---
+
 
 ## 🚀 Installation
 
@@ -57,6 +83,8 @@ streamlit run your_dashboard_script.py
 
 > Replace `your_dashboard_script.py` with your actual script file name if different.
 
+---
+
 ## 📋 requirements.txt
 
 ```
@@ -69,6 +97,7 @@ wordcloud
 scikit-learn
 plotly
 ```
+---
 
 ## 📊 Screenshots
 
@@ -78,11 +107,15 @@ plotly
 
 > _You can create a `screenshots/` folder and save screenshots of your dashboard._
 
+---
+
 ## 💡 Use Cases
 
 - E-commerce product managers seeking pricing optimization insights.
 - Marketers looking to understand review sentiment and customer preferences.
 - Data analysts performing category-level product performance evaluation.
+
+---
 
 ## 🔐 License
 
