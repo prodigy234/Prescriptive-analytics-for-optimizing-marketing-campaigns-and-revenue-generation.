@@ -4,6 +4,34 @@ This interactive Streamlit dashboard provides comprehensive **descriptive, diagn
 
 ---
 
+This highly intelligent project which is a powerful Streamlit-based Prescriptive Analytics Dashboard which I built using real Amazon product data can be accessed live on streamlit [Here](https://amazonprescriptivedashboard.streamlit.app/)
+
+---
+
+This interactive Streamlit dashboard provides:
+
+**📊 Interactive Visualizations (using Plotly and Seaborn)**
+
+**🧠 K-Means Clustering for Product Segmentation**
+
+**🏷️ Category-Based Performance Analysis**
+
+**💬 Review Sentiment Word Cloud**
+
+**✅ Actionable Business Recommendations**
+
+It was designed to help businesses:
+
+- Optimize product pricing strategies
+
+- Identify top-performing categories
+
+- Understand customer sentiment
+
+- Maximize ROI through data-driven insights
+
+---
+
 ## 📬 Author
 
 **Gbenga Kajola**
@@ -18,7 +46,6 @@ This interactive Streamlit dashboard provides comprehensive **descriptive, diagn
 [Certified_Data_Analyst](https://www.datacamp.com/certificate/DAA0018583322187)
 
 [Certified_SQL_Database_Programmer](https://www.datacamp.com/certificate/SQA0019722049554)
-
 
 ---
 
@@ -97,15 +124,6 @@ wordcloud
 scikit-learn
 plotly
 ```
----
-
-## 📊 Screenshots
-
-| Metric Cards | Discount Analysis | Clustering |
-|--------------|-------------------|------------|
-| ![metrics](screenshots/metrics.png) | ![discount](screenshots/discount.png) | ![cluster](screenshots/cluster.png) |
-
-> _You can create a `screenshots/` folder and save screenshots of your dashboard._
 
 ---
 
