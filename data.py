@@ -25,7 +25,7 @@ data['rating_count'] = data['rating_count'].str.replace(',', '').astype(float)
 data.dropna(subset=['rating', 'rating_count'], inplace=True)
 
 # --- STREAMLIT UI SETUP --- #
-st.set_page_config(page_title="Amazon Product Insights", layout="wide", page_icon="📦")
+st.set_page_config(page_title="Amazon Product Intelligence Dashboard", layout="wide", page_icon="📦")
 st.title("📦 Advanced Prescriptive Analytics Dashboard")
 st.markdown("This is an interactive and intelligent analytics dashboard delivering real-time prescriptive insights on Amazon product data.")
 st.info("This tool empowers product managers, marketers, and analysts to make data-driven decisions based on discount strategies, pricing effectiveness, customer sentiment, and category performance.")
@@ -109,7 +109,7 @@ with open("Prescriptive_Insights_Summary.docx", "rb") as doc_file:
     mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
 
-    st.info("This report gives a well detailed and summarized insights generated from this prescriptive analytics carried out.")
+    st.info("This report gives a well detailed and summarized real-time prescriptive insights on Amazon product data.")
     
 st.markdown("---")
 
