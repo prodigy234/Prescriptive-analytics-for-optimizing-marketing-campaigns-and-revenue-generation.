@@ -10,6 +10,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from collections import Counter
 from io import BytesIO
 import plotly.express as px
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
 
 # Load dataset
 data = pd.read_csv('amazon.csv')
@@ -31,10 +33,13 @@ st.markdown("Explore **product performance, pricing strategy, sentiment**, and *
 st.sidebar.header("🔍 Filter Options")
 categories = st.sidebar.multiselect("Select Categories", options=data['category'].unique(), default=data['category'].unique())
 price_range = st.sidebar.slider("Discounted Price Range", float(data['discounted_price'].min()), float(data['discounted_price'].max()), (float(data['discounted_price'].min()), float(data['discounted_price'].max())))
+rating_range = st.sidebar.slider("Rating Range", float(data['rating'].min()), float(data['rating'].max()), (float(data['rating'].min()), float(data['rating'].max())))
 
 filtered_data = data[(data['category'].isin(categories)) &
                      (data['discounted_price'] >= price_range[0]) &
-                     (data['discounted_price'] <= price_range[1])]
+                     (data['discounted_price'] <= price_range[1]) &
+                     (data['rating'] >= rating_range[0]) &
+                     (data['rating'] <= rating_range[1])]
 
 # --- METRICS --- #
 col1, col2, col3 = st.columns(3)
@@ -79,6 +84,16 @@ st.markdown("""
 - **Bundle products** in top-rated categories to increase upsell chances.
 - **Monitor complaints in reviews** to improve product quality and reduce negative reviews.
 """)
+
+# --- CLUSTERING FOR SEGMENTATION --- #
+st.subheader("🔬 Product Segmentation using K-Means Clustering")
+cluster_data = filtered_data[['discounted_price', 'rating', 'rating_count']].dropna()
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(cluster_data)
+kmeans = KMeans(n_clusters=3, random_state=42)
+filtered_data['Cluster'] = kmeans.fit_predict(scaled_data)
+fig7 = px.scatter(filtered_data, x='discounted_price', y='rating', color='Cluster', size='rating_count', title='Product Segments by Price and Rating')
+st.plotly_chart(fig7, use_container_width=True)
 
 # --- WORD CLOUD --- #
 st.subheader("🔍 Customer Review Word Cloud")
